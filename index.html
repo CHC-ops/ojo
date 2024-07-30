@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OjO</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add styles for the logout button */
+        .logout-button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OjO</h1>
+        <form id="inputForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="aka">Nombre:</label>
+                    <input type="text" id="aka" name="aka" required>
+                </div>
+                <div class="form-group">
+                    <label for="numerals">#:</label>
+                    <input type="text" id="numerals" name="numerals" placeholder="e.g., 5, 10" required>
+                </div>
+                <div class="form-group">
+                    <label for="amounts">$:</label>
+                    <input type="text" id="amounts" name="amounts" placeholder="e.g., 100, 200" required>
+                </div>
+                <div class="form-group">
+                    <label for="pieces">Pedazos:</label>
+                    <input type="text" id="pieces" name="pieces" placeholder="e.g., 1, 2" required>
+                </div>
+                <div class="form-group">
+                    <label for="playType">Jugada:</label>
+                    <select id="playType" name="playType" required>
+                        <option value="Diaria">Diaria</option>
+                        <option value="Chica">Chica</option>
+                        <option value="HideAll">HideAll</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit">Enviar</button>
+            </div>
+        </form>
+
+        <button id="toggleSearchForm">Mostrar/Ocultar Buscar por Criterios</button>
+        <div id="searchFormContainer" class="hidden">
+            <h2>Buscar por Criterios</h2>
+            <form id="searchForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="searchName">Nombre:</label>
+                        <input type="text" id="searchName" name="searchName">
+                    </div>
+                    <div class="form-group">
+                        <label for="search#">#:</label>
+                        <input type="number" id="search#" name="search#">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchPlayType">Jugada:</label>
+                        <select id="searchPlayType" name="searchPlayType">
+                            <option value="">Todos</option>
+                            <option value="Diaria">Diaria</option>
+                            <option value="Chica">Chica</option>
+                            <option value="HideAll">HideAll</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Fecha de Inicio:</label>
+                        <input type="date" id="startDate" name="startDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">Fecha de Fin:</label>
+                        <input type="date" id="endDate" name="endDate">
+                    </div>
+                </div>
+
+                <div class="center-buttons">
+                    <button type="submit">Buscar</button>
+                    <button type="button" id="resetButton">Reiniciar</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="resultsTableContainer">
+            <h2>Información de Participantes</h2>
+            <table id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>#</th>
+                        <th>Jugada</th>
+                        <th>$</th>
+                        <th>Pedazos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Los resultados se llenarán aquí -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="access-pin-section">
+            <label for="accessPin">Introduce el PIN para Borrar Historial:</label>
+            <input type="password" id="accessPin">
+            <button id="eraseHistoryButton">Borrar Historial</button>
+        </div>
+
+        <div class="suert-message">¡SUERTE!</div>
+        <button class="logout-button" id="logoutButton">Cerrar Sesión</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            // Clear localStorage or any session data if necessary
+            localStorage.removeItem('loggedIn');
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
